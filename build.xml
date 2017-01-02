@@ -1,5 +1,5 @@
 <!--<project name="PaxTravelInternational" default="autodeploy-create" basedir=".">-->
-<project name="PaxTravelInternational" default="ear-gen" basedir=".">
+<project name="ProyTravel" default="ear-gen" basedir=".">
 
 	<echo>iniciando build.xml ......</echo>
 	<property file="build.properties" />
@@ -27,7 +27,7 @@
 	
 	<target name="intranet">
 		<echo>Building the war file</echo>
-		<jar jarfile="${build.dir}/PaxTravelInternational.war" basedir="${webapp.dir}">
+		<jar jarfile="${build.dir}/ProyTravel.war" basedir="${webapp.dir}">
 			<!-- <include name="resources/**"/> !-->
 			<include name="WEB-INF/paginas/cliente/*.jsp"/>
 			<include name="WEB-INF/paginas/commons/*.*"/>
@@ -124,7 +124,7 @@
 
 		<jar jarfile="${build.dir}/${project.name}.ear" >
 			<fileset dir="${build.dir}">
-				<include name="PaxTravelInternational.war"/>
+				<include name="ProyTravel.war"/>
 				<include name="lib/**" />
 				<!--<include name="lib/controller.jar"/>-->
 			</fileset>

@@ -10,7 +10,8 @@ public class PaqueteTuristicoBean {
 	private String fechaFin;
 	private int idOrden;
 	private int idEstado;
-	private int idTrabajador;
+	private int idTrabajador;	
+	
 	
 	private int idPaquete;
 	private int idPaqueteDeta;
