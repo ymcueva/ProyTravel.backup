@@ -1258,19 +1258,19 @@ function guardarDetalleFareInfo(){
 														<label class="col-sm-2" style="text-align:right;">Viaje:</label>
 														<div class="col-sm-9" style="text-align: left">
 															
-															<!--  <label style="width:120px;" for="radTipoticket">
-															<input type="radio" name="tipoTicket" id="radTipoticket1" value="1">Ida/Vuelta</input>
-															</label> -->
+															<label style="width:120px;" for="radTipoticket">
+																<input type="radio" name="tipoTicket" id="radTipoticket1" value="1">Ida y vuelta</input>
+															</label>
 															
 															<label style="width:120px;" for="radTipoticket">
-															<input type="radio" name="tipoTicket" id="radTipoticket2" value="2">Ida</input>
+																<input type="radio" name="tipoTicket" id="radTipoticket2" value="2">Sólo Ida</input>
 															</label>
 															
 														</div>
 													</div>
 													
 													<div class="form-group">
-														<div class="col-sm-2" style="text-align:right; font-weight:bold">Fecha Partida:</div>
+														<div class="col-sm-2" style="text-align:right; font-weight:bold">Fecha:</div>
 														<div class="col-sm-3">
 															<div class="input-group date tamanoMaximo" id="divFechaPartidaTicket">
 																<input name="fechaPartidaTicket" id="txtFechaPartidaTicket" readonly="yes" type="text" class="form-control tamanoMaximo txtFecha" ></input>
@@ -1293,16 +1293,16 @@ function guardarDetalleFareInfo(){
 													</div>
 													
 													<div class="form-group">
-														<div class="col-sm-2" style="text-align:right">Pais Origen:</div>
+														<div class="col-sm-2" style="text-align:right; font-weight:bold">Origen:</div>
 														
 														<div class="col-sm-3" id="divPaisDestino">
 															<select name="paisOrigenTicket" id="selPaisOrigenTicket" class="form-control tamanoMaximo"> 
-																<option value="">---Seleccione---</option>
+																<option value="">---Seleccione País---</option>
 																
 															</select>
 														</div>
 														
-														<div class="col-sm-2" style="text-align:right">Ciudad Origen:</div>
+														<div class="col-sm-2" style="text-align:right">Ciudad:</div>
 														
 														<div class="col-sm-3" id="divCiudadDestino">
 															<select name="ciudadOrigenTicket" id="selCiudadOrigenTicket" class="form-control tamanoMaximo"> 
@@ -1315,16 +1315,16 @@ function guardarDetalleFareInfo(){
 													</div>
 													
 													<div class="form-group">
-														<div class="col-sm-2" style="text-align:right">Pais Destino:</div>
+														<div class="col-sm-2" style="text-align:right; font-weight:bold"> Destino:</div>
 														
 														<div class="col-sm-3" id="divPaisDestino">
 															<select name="paisDestinoTicket" id="selPaisDestinoTicket" class="form-control tamanoMaximo"> 
-																<option value="">---Seleccione---</option>
+																<option value="">---Seleccione País---</option>
 																
 															</select>
 														</div>
 														
-														<div class="col-sm-2" style="text-align:right">Ciudad Destino:</div>
+														<div class="col-sm-2" style="text-align:right">Ciudad:</div>
 														
 														<div class="col-sm-3" id="divCiudadDestino">
 															<select name="ciudadDestinoTicket" id="selCiudadDestinoTicket" class="form-control tamanoMaximo"> 
@@ -1341,19 +1341,24 @@ function guardarDetalleFareInfo(){
 										
 													<div class="form-group">
 														
-														<div class="col-sm-2" style="text-align:right; font-weight:bold">Cantidad Ni&ntilde;os:</div>
+														<div class="col-sm-2" style="text-align:right; font-weight:bold">N° Ni&ntilde;os:</div>
 														<div class="col-sm-2">
 															<input name="cantidadNinosTicket" id="txtCantidadNinosTicket" type="text" class="form-control tamanoMaximo" ></input>
 														</div>
 														
-														<div class="col-sm-2" style="text-align:right; font-weight:bold">Cantidad Adultos:</div>
+														<div class="col-sm-2" style="text-align:right; font-weight:bold">N° Adultos:</div>
 														<div class="col-sm-2">
 															<input name="cantidadAdultosTicket" id="txtCantidadAdultosTicket" type="text" class="form-control tamanoMaximo" ></input>
 														</div>
 														
+														<div class="col-sm-2" style="text-align:right; font-weight:bold">N° Infante:</div>
 														<div class="col-sm-2">
-															<input name="ruta" id="chkRuta" type="checkbox" class="tamanoMaximo" >Ruta</input>
+															<input name="cantidadInfantesTicket" id="txtCantidadInfantesTicket" type="text" class="form-control tamanoMaximo" ></input>
 														</div>
+														
+														<!--  <div class="col-sm-2">
+															<input name="ruta" id="chkRuta" type="checkbox" class="tamanoMaximo" >Ruta</input>
+														</div>  -->
 														
 														
 														<div class="col-sm-2" style="text-align: center">
@@ -1369,7 +1374,7 @@ function guardarDetalleFareInfo(){
 																<thead>
 																	<tr>
 																		<th width="5%" class="text-center">Tipo</td>
-																		<th width="15%" class="text-center">Fecha Partida</td>																		
+																		<th width="15%" class="text-center">Fecha </td>																		
 																		<th width="15%" class="text-center">Origen</td>
 																		<th width="15%" class="text-center">Destino</td>																		
 																		<th width="15%" class="text-center">Opciones</td>
