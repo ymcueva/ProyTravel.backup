@@ -126,311 +126,110 @@ public class PaqueteTuristicoController {
 		}
 	}
 	
-	//cargarFormRegistrarPaqueteTuristico
-	@RequestMapping( value = "/cargarFormRegistrarPaqueteTuristico", method ={RequestMethod.GET, RequestMethod.POST} )
-	public ModelAndView cargarFormRegistrarPaqueteTuristico(HttpServletRequest request, HttpServletResponse response){
-		
-		ModelAndView modelAndView = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		Map<String, Object> mapaDatos = new HashMap<String, Object>();
-		
-		DataJsonBean dataJSON = new DataJsonBean();
-		
-		try {
-			modelAndView = new ModelAndView();
-			List<CiudadBean> listaCiudad = new ArrayList<CiudadBean>();
-			List<PaisBean> listaPais = new ArrayList<PaisBean>();
-
-//			CiudadBean ciudadBean = new CiudadBean();
-//			PaisBean paisBean = new PaisBean();
-//			ciudadBean.setIdPais(1);
-//			listaCiudad = cotizacionService.listarCiudad(ciudadBean);
-//			listaPais = cotizacionService.listarPais(paisBean);
-			
-			mapaDatos.put("titulo", "Registrar Paquete Tur&iacute;stico");
-			
-			Map<String, Object> mapaListaCiudad = new HashMap<String, Object>();
-			for (CiudadBean ciudadBean1 : listaCiudad) {
-				mapaListaCiudad.put("idCiudad", ciudadBean1.getIdCiudad());
-				mapaListaCiudad.put("nomCiudad", ciudadBean1.getNomCiudad());
-			}
-			
-			mapaDatos.put("listCiudad", listaCiudad);
-			mapaDatos.put("listPais", listaPais);
-			
-			//modelAndView.addObject("numeroCotizacion", cotizacionService.generarNumeroCotizacion()+"");
-			modelAndView.addObject("titulo", "REGISTRAR COTIZACI&Oacute;N");			
-			modelAndView.addObject("mapaDatos", mapaDatos);
-			modelAndView.addObject("fechaCotizacion", Utils.dateUtilToStringDDMMYYYY( new Date() )) ;
-			modelAndView.setViewName("cotizacion/registrarCotizacion");
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return modelAndView;
-	}
 	
-//	
-//	@RequestMapping( value = "/listarVacasAInseminar", method ={RequestMethod.GET, RequestMethod.POST} )
-//	public ModelAndView listarVacasAInseminar(HttpServletRequest request, HttpServletResponse response){
-//		
-//		ModelAndView modelAndView = null;
-//		Map<String, Object> mapa = new HashMap<String, Object>();
-//		List<AnimalBean> listaVacasAInseminar = new ArrayList<AnimalBean>();
-//		AnimalBean animalBean = new AnimalBean();
-//
-//		String botonBuscar = (request.getParameter("btnBuscar"))!=null?request.getParameter("btnBuscar"):"";
-//		
-//		boolean flag = false;
-//		DataJsonBean dataJSON = new DataJsonBean();
-//		
-//		try {
-//			
-//			modelAndView = new ModelAndView();
-//	        
-//			
-//			if("1".equals(botonBuscar)){
-//				Map<String, Object> parametrosRequest = ControllerUtil.parseRequestToMap(request);
-//				Map<String, Object> animlalBeanMap = (Map<String, Object>) parametrosRequest.get("animalBean");
-//				// inserta en el bean todos los valores del mapa (property vs keys)
-//				BeanUtils.populate(animalBean, animlalBeanMap);
-//				
-//				listaVacasAInseminar = animalService.listarVacasAInseminar(animalBean);
-//				mapa.put("listaVacasAInseminar",  listaVacasAInseminar);
-//				dataJSON.setRespuesta("ok", null, mapa);
-//				flag = true;
-//			} else {
-//				listaVacasAInseminar = animalService.listarVacasAInseminar(animalBean);
-//				mapa.put("titulo", "LISTA DE VACAS A INSEMINAR");
-//				
-//				modelAndView.addObject("listaVacasAInseminar", SojoUtil.toJson(listaVacasAInseminar) );
-//				modelAndView.addObject("mapaDatos", mapa);
-//				modelAndView.setViewName("inseminacion/listarVacasAInseminar");
-//			}
-//			
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		if (flag) {
-//			return ControllerUtil.handleJSONResponse(dataJSON, response);
-//		} else {
-//			return modelAndView;
-//		}
-//	}
-//	
-//	@RequestMapping( value = "/abrirRegistrarInseminacion", method ={RequestMethod.GET, RequestMethod.POST} )
-//	public ModelAndView abrirRegistrarInseminacion(HttpServletRequest request, HttpServletResponse response){
-//		
-//		ModelAndView modelAndView = null;
-//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//		Map<String, Object> mapa = new HashMap<String, Object>();
-//		List<AnimalBean> listaToro = new ArrayList<AnimalBean>();
-//		DataJsonBean dataJSON = new DataJsonBean();
-//
-//		try {
-//			modelAndView = new ModelAndView();
-//	        
-//			listaToro = animalService.listarToro();
-//			
-//			Map<String, Object> mapaListaToro = new HashMap<String, Object>();
-//			for (AnimalBean animalBean : listaToro) {
-//				mapaListaToro.put("codigo", animalBean.getCodigoAnimal());
-//				mapaListaToro.put("descripcion", animalBean.getNombreAnimal());
-//			}
-//			
-//	        mapa.put("titulo", "Registrar Inseminaci&oacute;n");
-//			mapa.put("codigoAnimal",(String) request.getParameter("codigoAnimal"));
-//			mapa.put("nombreAnimal",(String) request.getParameter("nombreAnimal"));
-//			mapa.put("listaToro", SojoUtil.toJson(mapaListaToro) );
-//			mapa.put("fechaActual", sdf.format( new Date() ));
-//			
-//			dataJSON.setRespuesta("ok", null, mapa);
-//
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return ControllerUtil.handleJSONResponse(dataJSON, response);
-//	}
-//	
-//	@RequestMapping( value = "/abrirEditarInseminacion", method ={RequestMethod.GET, RequestMethod.POST} )
-//	public ModelAndView abrirEditarInseminacion(HttpServletRequest request, HttpServletResponse response){
-//		
-//		ModelAndView modelAndView = null;
-//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//		Map<String, Object> mapa = new HashMap<String, Object>();
-//		List<AnimalBean> listaToro = new ArrayList<AnimalBean>();
-//		DataJsonBean dataJSON = new DataJsonBean();
-//
-//		List<InseminacionBean> listaInseminacion = new ArrayList<InseminacionBean>();
-//		InseminacionBean inseminacionBean = new InseminacionBean();
-//		
-//		try {
-//			modelAndView = new ModelAndView();
-//	        String codigoInseminacion = request.getParameter("codInseminacion");
-//	        
-//	        inseminacionBean.setCodigoInseminacion(codigoInseminacion);
-//	        listaInseminacion = inseminacionService.listarInseminacion(inseminacionBean);
-//			
-//	        mapa.put("titulo", "Editar Inseminaci&oacute;n");
-//	        mapa.put("botonGrabar", "Editar");
-//	        
-//	        if (listaInseminacion != null){
-//		        for (InseminacionBean inseminacionBean2 : listaInseminacion) {
-//		        	String fechaInseminacion = Utils.stringToStringddMMyyyy(inseminacionBean2.getFechaInseminacion());
-//		        	
-//		        	mapa.put("codigoInseminacion", inseminacionBean2.getCodigoInseminacion() );
-//		        	mapa.put("codigoVaca", inseminacionBean2.getCodigoVaca() );
-//		        	mapa.put("nombreVaca", inseminacionBean2.getNombreVaca());
-//		        	mapa.put("codigoToro", inseminacionBean2.getCodigoToro());
-//		        	mapa.put("tipoInseminacion", inseminacionBean2.getTipoInseminacion());
-//		        	mapa.put("fechaInseminacion", fechaInseminacion );
-//		        	mapa.put("observacion", inseminacionBean2.getObservacion());
-//		        	
-//				}
-//	        }
-//			
-//			dataJSON.setRespuesta("ok", null, mapa);
-//
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return ControllerUtil.handleJSONResponse(dataJSON, response);
-//	}
-//
-//	@RequestMapping( value = "/verDetalleInseminacion", method ={RequestMethod.GET, RequestMethod.POST} )
-//	public ModelAndView verDetalleInseminacion(HttpServletRequest request, HttpServletResponse response){
-//		
-//		ModelAndView modelAndView = null;
-//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//		Map<String, Object> mapa = new HashMap<String, Object>();
-//		List<AnimalBean> listaToro = new ArrayList<AnimalBean>();
-//
-//		InseminacionBean inseminacionBean = new InseminacionBean();
-//		DataJsonBean dataJSON = new DataJsonBean();
-//		try {
-//			modelAndView = new ModelAndView();
-//	        String codigoInseminacion = request.getParameter("codInseminacion");
-//	        inseminacionBean.setCodigoInseminacion(codigoInseminacion);
-//	        inseminacionBean = inseminacionService.verDetalleInseminacion(inseminacionBean);
-//			
-//	        mapa.put("titulo", "Detalle Inseminaci&oacute;n");
-//	        mapa.put("inseminacionBean", inseminacionBean);
-//	        
-//	        dataJSON.setRespuesta("ok", null, mapa);
-//
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return ControllerUtil.handleJSONResponse(dataJSON, response);
-//	}
-//	
-//	
-//	@SuppressWarnings("unchecked")
-//	@RequestMapping( value = "/grabarInseminacion" )
-//	public ModelAndView grabarInseminacion(HttpServletRequest request, HttpServletResponse response){
-//		
-//		ModelAndView modelAndView = null;
-//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//		Map<String, Object> mapa = new HashMap<String, Object>();
-//		List<AnimalBean> listaToro = new ArrayList<AnimalBean>();
-//		DataJsonBean dataJSON = new DataJsonBean();
-//
-//		try {
-//			modelAndView = new ModelAndView();
-//			HttpSession session = request.getSession();
-//			String usuario = (String) session.getAttribute("idUsuario");
-//			
-//			Map<String, Object> parametrosRequest = ControllerUtil.parseRequestToMap(request);
-//			Map<String, Object> inseminacionBeanMap = (Map<String, Object>) parametrosRequest.get("inseminacionBean");
-//			InseminacionBean inseminacionBean = new InseminacionBean();
-//			AnimalBean animalBean = new AnimalBean();
-//			
-//			// inserta en el bean todos los valores del mapa (property vs keys)
-//			BeanUtils.populate(inseminacionBean, inseminacionBeanMap);
-//	        String codigoInseminacion = inseminacionService.obtenerCodigoInseminacion();
-//			inseminacionBean.setCodigoInseminacion(codigoInseminacion);
-//			inseminacionBean.setFechaInseminacion( Utils.stringToStringyyyyMMdd (inseminacionBean.getFechaInseminacion()) );
-//			inseminacionBean.setUsuario( usuario );
-//
-//			animalBean.setCodigoAnimal(inseminacionBean.getCodigoVaca());
-//			animalBean.setEstadoProcesoEvolutivo("2");
-//			
-//			int registro = inseminacionService.registrarInseminacion(inseminacionBean);
-//			int actualizaEstado = animalService.actualizaEstadoProcesoEvolutivo(animalBean);
-//			
-//			dataJSON.setRespuesta("ok", null, mapa);
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return ControllerUtil.handleJSONResponse(dataJSON, response);
-//	}
-//	
-//	@SuppressWarnings("unchecked")
-//	@RequestMapping( value = "/editarInseminacion" )
-//	public ModelAndView editarInseminacion(HttpServletRequest request, HttpServletResponse response){
-//		
-//		ModelAndView modelAndView = null;
-//		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//		Map<String, Object> mapa = new HashMap<String, Object>();
-//		DataJsonBean dataJSON = new DataJsonBean();
-//
-//		try {
-//			modelAndView = new ModelAndView();
-//			HttpSession session = request.getSession();
-//
-//			Map<String, Object> parametrosRequest = ControllerUtil.parseRequestToMap(request);
-//			Map<String, Object> inseminacionBeanMap = (Map<String, Object>) parametrosRequest.get("inseminacionBean");
-//			InseminacionBean inseminacionBean = new InseminacionBean();
-//			
-//			// inserta en el bean todos los valores del mapa (property vs keys)
-//			BeanUtils.populate(inseminacionBean, inseminacionBeanMap);
-//			inseminacionBean.setFechaInseminacion( Utils.stringToStringyyyyMMdd (inseminacionBean.getFechaInseminacion()) );
-//			inseminacionBean.setUsuario( session.getAttribute("idUsuario").toString() );
-//
-//			int registro = inseminacionService.editarInseminacion(inseminacionBean);
-//			dataJSON.setRespuesta("ok", null, mapa);
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return ControllerUtil.handleJSONResponse(dataJSON, response);
-//	}
-//	
-//	@SuppressWarnings("unchecked")
-//	@RequestMapping( value = "/eliminarInseminacion" )
-//	public ModelAndView eliminarInseminacion(HttpServletRequest request, HttpServletResponse response){
-//		ModelAndView modelAndView = null;
-//		InseminacionBean inseminacionBean = new InseminacionBean();		DataJsonBean dataJSON = new DataJsonBean();
-//		Map<String, Object> mapa = new HashMap<String, Object>();
-//		
-//		try {
-//			modelAndView = new ModelAndView();
-//			HttpSession session = request.getSession();
-//			
-//			String codigoInseminacion = request.getParameter("codInseminacion");		
-//			String codigoAnimal = request.getParameter("codAnimal");
-//			inseminacionBean.setCodigoInseminacion(codigoInseminacion);
-//			inseminacionBean.setUsuario( session.getAttribute("idUsuario").toString() );
-//			inseminacionService.eliminarInseminacion(inseminacionBean);
-//			
-//			AnimalBean animalBean = new AnimalBean();
-//			animalBean.setCodigoAnimal(codigoAnimal);
-//			animalBean.setEstadoProcesoEvolutivo("1");
-//			animalService.actualizaEstadoProcesoEvolutivo(animalBean);
-//
-//			dataJSON.setRespuesta("ok", null, mapa);
-//		} catch (Exception e) {
-//			System.out.println(e.getMessage());
-//		}
-//		return ControllerUtil.handleJSONResponse(dataJSON, response);
-//	}
+	//cargarFormRegistrarPaqueteTuristico
+		@RequestMapping( value = "/cargarFormRegistrarPaqueteTuristico", method ={RequestMethod.GET, RequestMethod.POST} )
+		public ModelAndView cargarFormRegistrarPaqueteTuristico(HttpServletRequest request, HttpServletResponse response){
+			
+			ModelAndView modelAndView = null;
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			Map<String, Object> mapaDatos = new HashMap<String, Object>();
+			
+			DataJsonBean dataJSON = new DataJsonBean();
+			
+			try {
+				modelAndView = new ModelAndView();
+				List<CiudadBean> listaCiudad = new ArrayList<CiudadBean>();
+				List<PaisBean> listaPais = new ArrayList<PaisBean>();
+			
+				mapaDatos.put("titulo", "REGISTRAR PAQUETE TURISTICO");
+				
+				Map<String, Object> mapaListaCiudad = new HashMap<String, Object>();
+				for (CiudadBean ciudadBean1 : listaCiudad) {
+					mapaListaCiudad.put("idCiudad", ciudadBean1.getIdCiudad());
+					mapaListaCiudad.put("nomCiudad", ciudadBean1.getNomCiudad());
+				}
+				
+				mapaDatos.put("listCiudad", listaCiudad);
+				mapaDatos.put("listPais", listaPais);
+				
+				//modelAndView.addObject("numeroCotizacion", cotizacionService.generarNumeroCotizacion()+"");
+				modelAndView.addObject("titulo", "REGISTRAR PAQUETE TURISTICO");			
+				modelAndView.addObject("mapaDatos", mapaDatos);
+				modelAndView.addObject("fechaCotizacion", Utils.dateUtilToStringDDMMYYYY( new Date() )) ;
+				modelAndView.setViewName("paqueteTuristico/registrarPaqueteTuristico");
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			return modelAndView;
+		}
+		
+		
+		
+		
+		
+		
+		@SuppressWarnings("unchecked")
+		@RequestMapping( value = "/grabarTransaccionPaqTuristico" )
+		public ModelAndView grabarTransaccionPaqTuristico(HttpServletRequest request, HttpServletResponse response){
+			
+			ModelAndView modelAndView = null;
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			Map<String, Object> mapa = new HashMap<String, Object>();
+			System.out.println("Ingresando al controller");
+			DataJsonBean dataJSON = new DataJsonBean();
 
+			try {
+				modelAndView = new ModelAndView();
+				HttpSession session = request.getSession();
+				String usuario = (String) session.getAttribute("idUsuario");
+				
+							
+					Map<String, Object> parametrosRequest = ControllerUtil.parseRequestToMap(request);
+					Map<String, Object> paqueteTuristicoBeanMap = (Map<String, Object>) parametrosRequest.get("paqueteTuristicoBean");
+					PaqueteTuristicoBean objbean = new PaqueteTuristicoBean();
+					
+					BeanUtils.populate(objbean, paqueteTuristicoBeanMap);
+					BeanUtils.copyProperties(objbean, paqueteTuristicoBeanMap);
+					
+					int estado = 1;
+					int orden =0111222;
+					String fecha=null;
+					String fechaInicio = null;
+					String fechaFin = null;
+				
+					System.out.println(estado);
+					
+					objbean.setNombre(objbean.getNombre());
+					objbean.setIdEstado(estado);				
+					objbean.setObservacion(objbean.getObservacion());
+					objbean.setIdOrden(orden);
+					objbean.setFecha( Utils.stringToStringyyyyMMdd (fecha));	
+					objbean.setFeInicio(Utils.stringToStringyyyyMMdd(fechaInicio));				
+					objbean.setFeFin(Utils.stringToStringddMMyyyy(fechaFin));
+					
+					objbean.setNuNinos(objbean.getNuNinos());
+					objbean.setNuAdultos(objbean.getNuAdultos());
+					objbean.setIdMoneda(1);
+					objbean.setImMin(objbean.getImMin());
+					objbean.setImMax(objbean.getImMax());	
+					
+					//System.out.println(objbean);
+					
+					
+					int registro = paqueteTuristicoService.GrabarPaqueteTuristico(objbean);
+		
+				
+					
+				
+				
+				dataJSON.setRespuesta("ok", null, mapa);
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			return ControllerUtil.handleJSONResponse(dataJSON, response);
+		}
+	
+	
 }
-
-
-
-
-
-
-
-
-

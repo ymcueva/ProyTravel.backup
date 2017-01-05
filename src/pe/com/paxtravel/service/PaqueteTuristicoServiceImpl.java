@@ -25,6 +25,15 @@ public class PaqueteTuristicoServiceImpl implements PaqueteTuristicoService {
 		return listaPaquete;
 	}
 	
+	@Override
+	public int GrabarPaqueteTuristico(PaqueteTuristicoBean paqueteTuristicoBean) {
+		return paqueteTuristicoDAO.GrabarPaqueteTuristico(paqueteTuristicoBean);
+	}
+	
+	@Override
+	public String obtenerCodigoPaqTuristico() {
+		return (String) paqueteTuristicoDAO.obtenerCodigoPaqTuristico();
+	}
 	
 	
 }

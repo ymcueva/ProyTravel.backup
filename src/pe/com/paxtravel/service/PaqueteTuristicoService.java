@@ -9,5 +9,9 @@ public interface PaqueteTuristicoService {
 	
 	public List<PaqueteTuristicoBean> listarPaqueteTuristico(PaqueteTuristicoBean paqueteTuristicoBean);
 	
+public int GrabarPaqueteTuristico(PaqueteTuristicoBean paqueteTuristicoBean);
+	
+	public String obtenerCodigoPaqTuristico();
+	
 	
 }

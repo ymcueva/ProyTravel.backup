@@ -7,34 +7,38 @@
 	<typeAlias alias="paqueteTuristicoBean" type="pe.com.paxtravel.bean.PaqueteTuristicoBean" />
 	<typeAlias alias="string" type="java.lang.String" />
 
-	<resultMap id="resultPaqueteTuristico" class="paqueteTuristicoBean">		
-		<result property="numeroFila"			    column="ca_nume_fila" />		
-		<result property="idPaquete"			    column="id_paquete" />			
-		<result property="nombre" 		    column="nombre" />
-		<result property="idEstado" 	column="id_estado" />
-		<result property="observacion" 				column="observacion" />
-		<result property="idOrden"			    column="id_orden" />
-		<result property="fecha" 		    column="fecha" />
-		<result property="fechaIni" 		    column="fe_inicio" />
-		<result property="fechaFin" 		    column="fe_fin" />
-		<result property="idTrabajador"			    column="id_trabajador" />		
-		<result property="nombreEstadoPaquete" 	column="no_estado" />
-		<result property="nuOrden" 	column="nu_orden" />		
-<!-- 		<result property="nuNinos"			    column="nu_ninos" /> -->
-<!-- 		<result property="nuAdultos"			    column="nu_adultos" /> -->
-<!-- 		<result property="nuDias"			    column="nu_dias" /> -->
-<!-- 		<result property="fePartida"			    column="fe_partida" /> -->
-<!-- 		<result property="feRetorno"			    column="fe_retorno" />		 -->
+	<resultMap id="resultPaqueteTuristico" class="paqueteTuristicoBean">
+			
+		<result property="idPaquete"			    column="id_paquete" />
+		<result property="nombre" 		    		column="nombre" />
+		<result property="idEstado" 				column="id_estado" />
+		<result property="observacion" 		    	column="observacion" />
+		<result property="idOrden"			    	column="id_orden" />
+		<result property="fecha" 		    		column="fecha" />
+		<result property="feInicio" 		    	column="fe_inicio" />
+		<result property="feFin" 		    		column="fe_fin" />
+		<result property="idTrabajador"			    column="id_trabajador" />
+		<result property="nuNinos"					column="nu_ninos"/>
+		<result property="nuAdultos"				column="nu_adultos"/>
+		<result property="idMoneda"			    	column="id_moneda" />
+		<result property="imMin" 					column="im_min" />
+		<result property="imMax" 					column="im_max" />
 		
-		<result property="nombreCliente" 		    column="cliente" />
+			
 		
-		<result property="nuOrden" 		    column="nu_orden" />
-		<result property="autorizacion" 		    column="autorizacion" />
-		<result property="imPresupuestoMinimo" 		    column="im_presupuesto_minimo" />
-		<result property="imPresupuestoMaximo" 		    column="im_presupuesto_maximo" />
-		<result property="observacion" 		    column="observacion" />		
 						
 	</resultMap>
+	
+	
+	<select id="obtenerCodigoPaqTuristico" resultClass="java.lang.String">
+		SELECT CONCAT('ORDE',
+               YEAR(NOW()), 
+               IF( LENGTH(MONTH(NOW()))=1,CONCAT('0',MONTH(NOW())),MONTH(NOW()) ),
+               MAX( SUBSTR( numeroFila, 11) ) +1 
+               ) AS nu_Fila
+         FROM paquete_turistico;
+	</select>
+	
 	
 	<select id="listarPaqueteTuristico" parameterClass="paqueteTuristicoBean" resultMap="resultPaqueteTuristico">
 		
@@ -53,8 +57,7 @@
 			   DATE_FORMAT(paquete.fe_fin,'%d-%m-%Y') fe_fin,			   
 			   
 			   paquete.id_trabajador,
-			   
-			   esta.no_estado, 
+			   			   
 				
 				CONCAT(clie.nombres,' ',clie.apellidos) cliente, 
 							   
@@ -68,53 +71,58 @@
                               
          FROM (SELECT @rownum:=0) r, paquete_turistico paquete  
          INNER JOIN orden_planificacion orden ON orden.id_orden=paquete.id_orden
-         INNER JOIN cliente clie ON orden.id_cliente=clie.id_cliente      
-         INNER JOIN estado esta  ON paquete.id_estado=esta.id_estado  
+         INNER JOIN cliente clie ON orden.id_cliente=clie.id_cliente                
 		 WHERE 1 = 1
 		 
-	     <!-- <isNotEmpty prepend="AND" property="fecha"> DATE_FORMAT(paquete.fecha,'%Y-%m-%d')  = #fecha# </isNotEmpty>
-	     <isNotEmpty prepend="AND" property="nuOrden"> orden.nu_orden = #nuOrden# </isNotEmpty> 
-	     <isNotEmpty prepend="AND" property="idEstado"> paquete.id_estado = #idEstado# </isNotEmpty>  -->
-	      
-<!-- 	      <isNotEmpty prepend="AND" property="materno"> emp_apemat = #materno# </isNotEmpty> -->
-<!-- 	      <isNotEmpty prepend="AND" property="dni"> emp_dni = #dni# </isNotEmpty> -->
-<!-- 	      <isNotEmpty prepend="AND" property="fechaNacimiento"> DATE_FORMAT(emp_fec_nac,'%d/%m/%Y') = #fechaNacimiento# </isNotEmpty> -->
-<!-- 	      <isNotEmpty prepend="AND" property="tipoUsuario"> emp_id_tipo_usua = #tipoUsuario# </isNotEmpty> -->
-<!-- 	      <isNotEmpty prepend="AND" property="codigo"> emp_id = #codigo# </isNotEmpty> -->
+</select>
+
+  
+<insert id="insertarPaqueteTuristico" parameterClass="paqueteTuristicoBean">
+INSERT INTO paquete_turistico(
+	nombre,
+	id_estado,
+	observacion,
+	id_orden,
+	fecha,
+	fe_inicio,
+	fe_fin,
+	id_trabajador,
+	nu_ninos,
+	nu_adultos,
+	id_moneda,
+	im_min,
+	im_max
+) 
+VALUES 
+(
+	#nombre#,
+	#idEstado#,
+	#observacion#,
+	#idOrden#,
+	#fecha#,
+	#feInicio#,
+	#feFin#,
+	#idTrabajador#,
+	#nuNinos#,
+	#nuAdultos#,
+	#idMoneda#,
+	#imMin#,
+	#imMax#
+
+			
+)
+		
+	</insert>
+
+<select id="obtenerNumeroPaqTuristico" resultClass="string">
+		SELECT CONCAT('COTI',
+               YEAR(NOW()), 
+               IF( LENGTH(MONTH(NOW()))=1,CONCAT('0',MONTH(NOW())),MONTH(NOW()) ),
+               MAX( SUBSTR( NU_COTIZA, 11) ) +1 
+               ) AS NRO_COTIZA
+         FROM COTIZACION;
 	</select>
 	
-<!-- 	<select id="obtenerCodigoEmpleado" resultClass="string"> -->
-<!-- 		SELECT LPAD(MAX(emp_id)+1,4,0) AS codigoEmpleado FROM empleado -->
-<!-- 	</select> -->
-	
-<!-- 	<insert id="insertarEmpleado" parameterClass="empleadoBean"> -->
-<!-- 		INSERT INTO empleado( -->
-<!-- 			emp_id, -->
-<!-- 			emp_username, -->
-<!-- 			emp_apepat, -->
-<!-- 			emp_apemat, -->
-<!-- 			emp_nom, -->
-<!-- 			emp_pass, -->
-<!-- 			emp_last_ip, -->
-<!-- 			emp_fec_nac, -->
-<!-- 			emp_on_line, -->
-<!-- 			emp_state, -->
-<!-- 			emp_dni,  -->
-<!-- 			emp_id_tipo_usua -->
-<!-- 		) VALUES ( -->
-<!-- 			#codigo#, -->
-<!-- 			#username#, -->
-<!-- 			#paterno#, -->
-<!-- 			#materno#, -->
-<!-- 			#nombre#, -->
-<!-- 			#password#, -->
-<!-- 			#direccionIP#, -->
-<!-- 			#fechaNacimiento#, -->
-<!-- 			#estadoOnLine#, -->
-<!-- 			#estado#, -->
-<!-- 			#dni#, -->
-<!-- 			#tipoUsuario# -->
-<!-- 		) -->
-<!-- 	</insert> -->	
+
 	
 </sqlMap>
