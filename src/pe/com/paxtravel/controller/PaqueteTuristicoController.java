@@ -177,7 +177,7 @@ public class PaqueteTuristicoController {
 			ModelAndView modelAndView = null;
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Map<String, Object> mapa = new HashMap<String, Object>();
-			System.out.println("Ingresando al controller");
+			//System.out.println("Ingresando al controller");
 			DataJsonBean dataJSON = new DataJsonBean();
 
 			try {
@@ -195,9 +195,9 @@ public class PaqueteTuristicoController {
 					
 					int estado = 1;
 					int orden =0111222;
-					String fecha=null;
-					String fechaInicio = null;
-					String fechaFin = null;
+					//String fecha=null;
+					//String fechaInicio = null;
+					//String fechaFin = null;
 				
 					System.out.println(estado);
 					
@@ -205,9 +205,10 @@ public class PaqueteTuristicoController {
 					objbean.setIdEstado(estado);				
 					objbean.setObservacion(objbean.getObservacion());
 					objbean.setIdOrden(orden);
-					objbean.setFecha( Utils.stringToStringyyyyMMdd (fecha));	
-					objbean.setFeInicio(Utils.stringToStringyyyyMMdd(fechaInicio));				
-					objbean.setFeFin(Utils.stringToStringddMMyyyy(fechaFin));
+					objbean.setFecha( Utils.stringToStringyyyyMMdd ( (String)paqueteTuristicoBeanMap.get("fecha")) );
+					//objbean.setFecha( Utils.stringToStringyyyyMMdd (fecha));	
+					objbean.setFeInicio(Utils.stringToStringyyyyMMdd((String)paqueteTuristicoBeanMap.get("feInicio")) );				
+					objbean.setFeFin(Utils.stringToStringddMMyyyy((String)paqueteTuristicoBeanMap.get("feFin")) );
 					
 					objbean.setNuNinos(objbean.getNuNinos());
 					objbean.setNuAdultos(objbean.getNuAdultos());
