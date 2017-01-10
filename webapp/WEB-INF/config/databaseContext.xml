@@ -55,13 +55,6 @@
 		<property name="sqlMapClient" ref="SqlMapClientConfig" />
 	</bean>
 
-	<bean id="paqueteTuristicoService" class="pe.com.paxtravel.service.PaqueteTuristicoServiceImpl">
-		<property name="paqueteTuristicoDAO"> <ref bean="PaqueteTuristicoDAO" /> </property>
-	</bean>
-	
-	<bean id="objService" class="pe.com.paxtravel.service.OrdenPlanificacionServiceImpl">
-		<property name="objDAO"> <ref bean="OrdenPlanificacionDAO" /> </property>
-	</bean>
 	
 
 	
@@ -87,6 +80,15 @@
 	<bean id="cotizacionService" class="pe.com.paxtravel.service.CotizacionServiceImpl">
 		<property name="cotizacionDAO"> <ref bean="CotizacionDAO" /> </property>
 	</bean>
+	
+	<bean id="paqueteTuristicoService" class="pe.com.paxtravel.service.PaqueteTuristicoServiceImpl">
+		<property name="paqueteTuristicoDAO"> <ref bean="PaqueteTuristicoDAO" /> </property>
+	</bean>
+	
+	<bean id="objService" class="pe.com.paxtravel.service.OrdenPlanificacionServiceImpl">
+		<property name="objDAO"> <ref bean="OrdenPlanificacionDAO" /> </property>
+	</bean>
+	
 	
 
 	<!-- Para recoger la configuracion de la base de datos de nuestro fichero properties -->

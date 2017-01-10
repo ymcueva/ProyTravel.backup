@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
 "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
 <sqlMap namespace="cotizacion">
 
 	<typeAlias alias="cotizacionDetalleTicketVueloBean" type="pe.com.paxtravel.bean.CotizacionDetalleTicketVueloBean" />
@@ -124,6 +125,7 @@
 	<select id="listarPais" parameterClass="paisBean" resultMap="resultPais">
 		SELECT id_destino, descripcion FROM destino_pais WHERE id_destino!=1
 	</select>
+	
 	
 	<insert id="insertarCotizacion" parameterClass="cotizacionBean">
 		INSERT INTO cotizacion(

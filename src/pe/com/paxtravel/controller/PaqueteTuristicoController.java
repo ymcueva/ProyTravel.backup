@@ -168,10 +168,8 @@ public class PaqueteTuristicoController {
 		
 		
 		
-		
-		
 		@SuppressWarnings("unchecked")
-		@RequestMapping( value = "/grabarTransaccionPaqTuristico2" )
+		@RequestMapping( value = "/grabarTransaccionPaqTuristico" )
 		public ModelAndView grabarTransaccionPaqTuristico(HttpServletRequest request, HttpServletResponse response){
 			
 			ModelAndView modelAndView = null;
@@ -182,10 +180,10 @@ public class PaqueteTuristicoController {
 
 			try {
 				
-				System.out.println(" grabarTransaccionPaqTuristico2 " );
+				System.out.println(" grabarTransaccionPaqTuristico " );
 				
 				modelAndView = new ModelAndView();
-				HttpSession session = request.getSession();
+				//HttpSession session = request.getSession();
 				//String usuario = (String) session.getAttribute("idUsuario");
 				
 							
@@ -195,28 +193,21 @@ public class PaqueteTuristicoController {
 					
 					BeanUtils.populate(objbean, paqueteTuristicoBeanMap);
 					
-					System.out.println(" bean: " + objbean.toString());
-					
-					//BeanUtils.copyProperties(objbean, paqueteTuristicoBeanMap);
+					//System.out.println(" bean: " + objbean.toString());
 					
 					
-					int estado = 1;
-					int orden =0111222;
-					//String fecha=null;
-					//String fechaInicio = null;
-					//String fechaFin = null;
+					
 				
 					//System.out.println(estado);
 					
 					objbean.setNombre(objbean.getNombre());
-					objbean.setIdEstado(estado);				
+					objbean.setIdEstado(1);				
 					objbean.setObservacion(objbean.getObservacion());
-					objbean.setIdOrden(orden);
-					objbean.setFecha( Utils.stringToStringyyyyMMdd ( (String)paqueteTuristicoBeanMap.get("fecha")) );
-					//objbean.setFecha( Utils.stringToStringyyyyMMdd (fecha));	
-					objbean.setFeInicio(Utils.stringToStringyyyyMMdd((String)paqueteTuristicoBeanMap.get("feInicio")) );				
-					objbean.setFeFin(Utils.stringToStringddMMyyyy((String)paqueteTuristicoBeanMap.get("feFin")) );
-					
+					objbean.setIdOrden(objbean.getIdOrden());
+					objbean.setFecha( Utils.stringToStringyyyyMMdd (objbean.getFecha()));					
+					objbean.setFeInicio(Utils.stringToStringyyyyMMdd(objbean.getFeInicio()));				
+					objbean.setFeFin(Utils.stringToStringddMMyyyy(objbean.getFeFin()));
+					objbean.setIdTrabajador(1);
 					objbean.setNuNinos(objbean.getNuNinos());
 					objbean.setNuAdultos(objbean.getNuAdultos());
 					objbean.setIdMoneda(1);
