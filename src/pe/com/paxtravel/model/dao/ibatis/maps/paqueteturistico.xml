@@ -107,9 +107,7 @@ VALUES
 	#nuAdultos#,
 	#idMoneda#,
 	#imMin#,
-	#imMax#
-
-			
+	#imMax#			
 )
 		
 	</insert>

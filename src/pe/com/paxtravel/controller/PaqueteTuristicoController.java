@@ -171,7 +171,7 @@ public class PaqueteTuristicoController {
 		
 		
 		@SuppressWarnings("unchecked")
-		@RequestMapping( value = "/grabarTransaccionPaqTuristico" )
+		@RequestMapping( value = "/grabarTransaccionPaqTuristico2" )
 		public ModelAndView grabarTransaccionPaqTuristico(HttpServletRequest request, HttpServletResponse response){
 			
 			ModelAndView modelAndView = null;
@@ -181,9 +181,12 @@ public class PaqueteTuristicoController {
 			DataJsonBean dataJSON = new DataJsonBean();
 
 			try {
+				
+				System.out.println(" grabarTransaccionPaqTuristico2 " );
+				
 				modelAndView = new ModelAndView();
 				HttpSession session = request.getSession();
-				String usuario = (String) session.getAttribute("idUsuario");
+				//String usuario = (String) session.getAttribute("idUsuario");
 				
 							
 					Map<String, Object> parametrosRequest = ControllerUtil.parseRequestToMap(request);
@@ -191,7 +194,11 @@ public class PaqueteTuristicoController {
 					PaqueteTuristicoBean objbean = new PaqueteTuristicoBean();
 					
 					BeanUtils.populate(objbean, paqueteTuristicoBeanMap);
-					BeanUtils.copyProperties(objbean, paqueteTuristicoBeanMap);
+					
+					System.out.println(" bean: " + objbean.toString());
+					
+					//BeanUtils.copyProperties(objbean, paqueteTuristicoBeanMap);
+					
 					
 					int estado = 1;
 					int orden =0111222;
@@ -199,7 +206,7 @@ public class PaqueteTuristicoController {
 					//String fechaInicio = null;
 					//String fechaFin = null;
 				
-					System.out.println(estado);
+					//System.out.println(estado);
 					
 					objbean.setNombre(objbean.getNombre());
 					objbean.setIdEstado(estado);				
@@ -218,18 +225,31 @@ public class PaqueteTuristicoController {
 					
 					//System.out.println(objbean);
 					
+					System.out.println(" enviar a grabar... ");
+					
+					System.out.println(" objeto: " + objbean.toString());
 					
 					int registro = paqueteTuristicoService.GrabarPaqueteTuristico(objbean);
 		
+					System.out.println(" registro index " + registro);									
 				
+					dataJSON.setRespuesta("ok", null, mapa);
 					
-				
-				
-				dataJSON.setRespuesta("ok", null, mapa);
+					
+					
 			} catch (Exception e) {
+				
+				System.out.println(" excepcion... ");
+				
 				System.out.println(e.getMessage());
+				
+				dataJSON.setRespuesta("error", null, mapa);
+				
+				
 			}
+			
 			return ControllerUtil.handleJSONResponse(dataJSON, response);
+			
 		}
 	
 	

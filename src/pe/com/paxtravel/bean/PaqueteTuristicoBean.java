@@ -108,5 +108,21 @@ public class PaqueteTuristicoBean {
 	
 	
 	
+	public String toString(){
+		return  "PaqueteTuristicoBean [idPaquete=" + idPaquete+ " ," +
+				"nombre=" + nombre+ " ," +
+				"idEstado=" + idEstado+ " ," +
+				"observacion=" + observacion+ " ," +
+				"idOrden=" + idOrden+ " ," +
+				"fecha=" + fecha+ " ," +
+				"feInicio=" + feInicio+ " ," +
+				"feFin=" + feFin+ " ," +
+				"idTrabajador=" + idTrabajador+ " ," +
+				"nuNinos=" + nuNinos+ " ," +
+				"nuAdultos=" + nuAdultos+ " ," +
+				"idMoneda=" + idMoneda+ " ," +
+				"imMin=" + imMin+ " ," +
+				"imMax=" + imMax + "]";
+	}
 	
 }

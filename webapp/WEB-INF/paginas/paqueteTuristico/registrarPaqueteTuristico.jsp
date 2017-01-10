@@ -120,7 +120,7 @@
 			};
 			
 			var idOrden = $("#txtcodOrden").val();
-			var nomPaquete = $("#txtnomPaqTuristico").val();
+			var nomPaquete = $("#txtpaqueteTuristico").val();
 			
 			alert(idOrden);
 			//alert(nomPaquete);
@@ -131,7 +131,7 @@
 			if ( $("#txtflagEdicion").val() == 1 ) {
 				ruta = '${pageContext.request.contextPath}/editarInseminacion';
 			} else{ 
-				ruta = '${pageContext.request.contextPath}/grabarTransaccionPaqTuristico'+params;
+				ruta = '${pageContext.request.contextPath}/grabarTransaccionPaqTuristico2'+params;
 			}
 			
 			alert(ruta);
@@ -145,6 +145,7 @@
 				contentType : "application/json; charset=utf-8",
 				dataType: 'json',
 				success: function(response) {
+					
 					if (response.estado = "ok") {
 						if ( $("#txtflagEdicion").val() == 1 ) {
 							$("#mensajeTransaccion").html("Se modific&oacute; satisfactoriamente la inseminaci&oacute;n de la vaca");
@@ -155,6 +156,7 @@
 						});
 						return false;
 					}
+					
 				},
 				error: function(data, textStatus, errorThrown) {
 				}
