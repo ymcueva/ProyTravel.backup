@@ -120,18 +120,18 @@
 			};
 			
 			var idOrden = $("#txtcodOrden").val();
-			var nomPaquete = $("#txtpaqueteTuristico").val();
+			//var nomPaquete = $("#txtpaqueteTuristico").val();
 			
 			alert(idOrden);
 			//alert(nomPaquete);
 			
-			var params = "?idOrden="+idOrden+"&nombre="+nomPaquete;
+			//var params = "?idOrden="+idOrden+"&nombre="+nomPaquete;
 			 
 			var ruta ="";
 			if ( $("#txtflagEdicion").val() == 1 ) {
 				ruta = '${pageContext.request.contextPath}/editarInseminacion';
 			} else{ 
-				ruta = '${pageContext.request.contextPath}/grabarTransaccionPaqTuristico2'+params;
+				ruta = '${pageContext.request.contextPath}/grabarTransaccionPaqTuristico';
 			}
 			
 			alert(ruta);
@@ -504,7 +504,7 @@
 																	
 																	<div class="col-sm-3">
 																		<div class="input-group date tamanoMaximo" id="divFechaPartida">
-																			<input name="fechaPartida" id="txtFechaPartida" readonly="yes" type="text" class="form-control tamanoMaximo txtFecha" ></input>
+																			<input name="fechaPartida" id="txtFechaPartida"  type="text" class="form-control tamanoMaximo txtFecha" ></input>
 																			<span class="input-group-addon">
 																				<span class="glyphicon glyphicon-calendar"></span>
 																			</span>
@@ -516,7 +516,7 @@
 																	<label class=" control-label col-sm-2 col-md-offset-2">Fecha Retorno:</label>
 																	<div class="col-sm-3">
 																		<div class="input-group date tamanoMaximo" id="divFechaRetorno">
-																			<input name="fechaRetorno" id="txtFechaRetorno" readonly="yes" type="text" class="form-control tamanoMaximo txtFecha" ></input>
+																			<input name="fechaRetorno" id="txtFechaRetorno"  type="text" class="form-control tamanoMaximo txtFecha" ></input>
 																			<span class="input-group-addon">
 																				<span class="glyphicon glyphicon-calendar"></span>
 																			</span>
