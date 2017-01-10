@@ -398,12 +398,12 @@
 															<div class="form-group">
 																<div class="col-sm-2" style="text-align:right; font-weight:bold">Presupuesto M&iacute;nimo:</div>
 																<div class="col-sm-3">
-																	<input name="presupuestoMinimo" id="txtPresupuestoMinimo" type="text" class="form-control tamanoMaximo"></input>
+																	<input name="ImMin" id="txtPresupuestoMinimo" type="text" class="form-control tamanoMaximo"></input>
 																</div>
 																
 																<div class="col-sm-2 col-md-offset-1" style="text-align:right; font-weight:bold">Presupuesto M&aacute;ximo:</div>
 																<div class="col-sm-3">
-																	<input name="presupuestoMaximo" id="txtPresupuestoMaximo" type="text" class="form-control tamanoMaximo"></input>
+																	<input name="ImMax" id="txtPresupuestoMaximo" type="text" class="form-control tamanoMaximo"></input>
 																</div>
 															</div>
 															
@@ -526,15 +526,15 @@
 																</div>
 																
 																<div class="form-group">
-																	<label class=" control-label col-sm-2">Cantidad adultos:</label>	
+																	<label class=" control-label col-sm-2">Cantidad adultos 22:</label>	
 																
 																	<div class="col-sm-3">
-																		<input id="txtcantAdultos" name="codigoOrden" type="text" maxlength="30" class="form-control" placeholder="Cantidad Adultos">
+																		<input id="txtcantAdultos" name="nuNinos" type="text" maxlength="30" class="form-control" placeholder="Cantidad Adultos">
 																	</div>
 																	<label class=" control-label col-sm-2 col-md-offset-2">Cantidad Ninos:</label>	
 																
 																	<div class="col-sm-3">
-																		<input id="txtcantNinos" name="codigoOrden" type="text" maxlength="30" class="form-control" placeholder="Cantidad Ninos">
+																		<input id="txtcantNinos" name="nuAdultos" type="text" maxlength="30" class="form-control" placeholder="Cantidad Ninos">
 																	</div>
 
 																	
@@ -558,7 +558,7 @@
 										<div class="col-sm-3"  style="text-align:right; font-weight:bold">Nombre Paquete Turistico:</div>
 										
 										<div class="col-sm-4">
-											<input id="txtpaqueteTuristico" name="txtpaqueteTuristico" type="text" maxlength="30" class="form-control">
+											<input id="nombre" name="nombre" type="text" maxlength="30" class="form-control">
 										</div>
 										
 										<div class="col-sm-2" style="text-align:right; font-weight:bold">Tipo Programa:</div>
