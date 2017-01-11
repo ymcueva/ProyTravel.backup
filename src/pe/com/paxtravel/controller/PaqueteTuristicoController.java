@@ -193,7 +193,9 @@ public class PaqueteTuristicoController {
 					
 					BeanUtils.populate(objbean, paqueteTuristicoBeanMap);
 					
-					//System.out.println(" bean: " + objbean.toString());
+					System.out.println(" Inicio bean ");
+					
+					System.out.println(" bean: " + objbean.toString());
 					
 					
 					
@@ -202,14 +204,34 @@ public class PaqueteTuristicoController {
 					
 					objbean.setNombre(objbean.getNombre());
 					objbean.setIdEstado(1);				
-					objbean.setObservacion(objbean.getObservacion());
+					objbean.setObservacion(objbean.getObservacion());					
 					objbean.setIdOrden(objbean.getIdOrden());
-					objbean.setFecha( Utils.stringToStringyyyyMMdd (objbean.getFecha()));					
-					objbean.setFeInicio(Utils.stringToStringyyyyMMdd(objbean.getFeInicio()));				
-					objbean.setFeFin(Utils.stringToStringddMMyyyy(objbean.getFeFin()));
+					
+					System.out.println(" fechas ini... ");
+					
+					if ( objbean.getFecha() != null && !objbean.getFecha().equals("") ) {
+						objbean.setFecha( Utils.stringToStringyyyyMMdd (objbean.getFecha()));					
+					} else {
+						objbean.setFecha( null );
+					}
+					
+					
+					
+					if ( objbean.getFeInicio() != null && !objbean.getFeInicio().equals("") ) {
+						objbean.setFeInicio(Utils.stringToStringyyyyMMdd(objbean.getFeInicio()));
+					}
+					
+					
+					if ( objbean.getFeFin() != null && !objbean.getFeFin().equals("") ) {
+						objbean.setFeFin(Utils.stringToStringddMMyyyy(objbean.getFeFin()));
+					}
+					
+					System.out.println(" fechas fin... ");
+										
 					objbean.setIdTrabajador(1);
 					objbean.setNuNinos(objbean.getNuNinos());
 					objbean.setNuAdultos(objbean.getNuAdultos());
+					
 					objbean.setIdMoneda(1);
 					objbean.setImMin(objbean.getImMin());
 					objbean.setImMax(objbean.getImMax());	
